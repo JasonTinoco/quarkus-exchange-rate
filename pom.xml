@@ -32,15 +32,6 @@
     </dependencyManagement>
 
     <dependencies>
-        <!--<dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-resteasy-jsonb</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-resteasy</artifactId>
-        </dependency>-->
 
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -53,6 +44,18 @@
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
             <version>${org.mapstruct.version}</version>
+        </dependency>
+
+        <!-- Hibernate ORM specific dependencies -->
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-hibernate-orm-panache</artifactId>
+        </dependency>
+
+        <!-- JDBC driver dependencies -->
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-jdbc-postgresql</artifactId>
         </dependency>
 
         <dependency>
