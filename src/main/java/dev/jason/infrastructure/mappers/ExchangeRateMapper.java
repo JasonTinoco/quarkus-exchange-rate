@@ -13,4 +13,5 @@ public interface ExchangeRateMapper {
     @Mapping(target = "purchase", source = "compra")
     @Mapping(target = "sale", source = "venta")
     ExchangeRate toDomain(FreeApiResponse freeApiResponse);
+
 }
