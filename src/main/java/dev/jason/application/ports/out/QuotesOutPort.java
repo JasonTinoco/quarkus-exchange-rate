@@ -1,7 +1,6 @@
 package dev.jason.application.ports.out;
 
 import dev.jason.domain.model.Quotes;
-import dev.jason.infrastructure.adapters.out.db.entity.QuotesEntity;
 
 import java.time.LocalDate;
 
