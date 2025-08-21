@@ -28,36 +28,40 @@ public class ExchangeRateService implements ExchangeRateUseCase {
 
         LocalDate today = LocalDate.now();
 
-        Quotes quotes = quotesOutPort.getQuotesPerDayByDocument(document, today);
-        Integer countQuotes = serviceDomain.getQuotes(quotes);
+        Quotes quotesResp = quotesOutPort.getQuotesPerDayByDocument(document, today);
+        Integer countQuotes = serviceDomain.getQuotes(quotesResp);
         Log.info("countQuotesPerDayByDocument: " + countQuotes);
 
         if (serviceDomain.isExceededQuotesLimit(countQuotes)) {
             return ExchangeRateResponse.builder()
-                    .code(401)
+                    .code(400)
                     .response("Warning")
                     .message("El cliente con DNI: " + document +
                             " Superó el límite de cotizaciones ")
                     .build();
         }
 
-        if (serviceDomain.isFirstQuotesOfDay(countQuotes)) {
-            quotesOutPort.saveQuotes(Quotes.builder()
-                    .document(document)
-                    .quotes(serviceDomain.addQuotes(countQuotes))
-                    .date(today).build());
-        } else {
-            quotesOutPort.updateQuotes(
-                    serviceDomain.addQuotes(countQuotes), document, today);
-        }
+        ExchangeRate exchangeRate = exchangeRateOutPort.getExchangeToday();
+        Quotes quotesReq = Quotes.builder()
+                .document(document)
+                .quotes(serviceDomain.addQuotes(countQuotes))
+                .date(today)
+                .exchangeRate(exchangeRate.getSunat())
+                .buy(exchangeRate.getBuy())
+                .sale(exchangeRate.getSale())
+                .build();
 
-        ExchangeRate er = exchangeRateOutPort.getExchangeToday();
+        if (serviceDomain.isFirstQuotesOfDay(countQuotes)) {
+            quotesOutPort.saveQuotes(quotesReq);
+        } else {
+            quotesOutPort.updateQuotes(quotesReq);
+        }
 
         return ExchangeRateResponse.builder()
                 .code(200)
                 .response("Success")
                 .message("El tipo de cambio para el cliente con DNI: " + document
-                        + " es: " + er.getSale())
+                        + " es: " + exchangeRate.getSale())
                 .build();
     }
 }

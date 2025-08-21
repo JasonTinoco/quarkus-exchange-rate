@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,6 +13,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Getter
 @Setter
@@ -30,5 +32,18 @@ public class QuotesEntity {
     private LocalDate date;
     @Column(nullable = false)
     private Integer quotes;
+    private Double exchangeRate;
+    private Double buy;
+    private Double sale;
+    @Column(nullable = false)
+    private LocalTime recordTime;
+    @Column(nullable = false)
+    private LocalTime updateTime;
+
+    @PrePersist
+    public void prePersist() {
+        recordTime = LocalTime.now();
+        updateTime = LocalTime.now();
+    }
 }
 

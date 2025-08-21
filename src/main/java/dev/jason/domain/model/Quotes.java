@@ -15,4 +15,7 @@ public class Quotes {
     private String document;
     private LocalDate date;
     private Integer quotes;
+    private Double exchangeRate;
+    private Double buy;
+    private Double sale;
 }

@@ -10,7 +10,7 @@ import org.mapstruct.Mapping;
 public interface ExchangeRateMapper {
 
     @Mapping(target = "date", source = "fecha")
-    @Mapping(target = "purchase", source = "compra")
+    @Mapping(target = "buy", source = "compra")
     @Mapping(target = "sale", source = "venta")
     ExchangeRate toDomain(FreeApiResponse freeApiResponse);
 

@@ -1,4 +1,4 @@
 package dev.jason.infrastructure.adapters.out.client.freeapi.dto;
 
-public record FreeApiResponse(String fecha, String sunat, String compra, String  venta) {
+public record FreeApiResponse(String fecha, Double sunat, Double compra, Double  venta) {
 }

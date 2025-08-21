@@ -12,7 +12,7 @@ import lombok.Setter;
 public class ExchangeRate {
 
     private String date;
-    private String sunat;
-    private String purchase;
-    private String sale;
+    private Double sunat;
+    private Double buy;
+    private Double sale;
 }
