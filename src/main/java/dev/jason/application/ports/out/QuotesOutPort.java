@@ -8,7 +8,7 @@ public interface QuotesOutPort {
 
     void saveQuotes(Quotes quotes);
 
-    void updateQuotes(Integer quotes, String document, LocalDate date);
+    void updateQuotes(Quotes quotes);
 
     Quotes getQuotesPerDayByDocument(String document, LocalDate date);
 }

@@ -22,8 +22,9 @@ public class QuotesRepositoryAdapter implements QuotesOutPort {
     }
 
     @Override
-    public void updateQuotes(Integer quotes, String document, LocalDate date) {
-        repository.update(quotes, document, date);
+    public void updateQuotes(Quotes quotes) {
+        repository.update(quotes.getQuotes(), quotes.getExchangeRate(), quotes.getBuy(),
+                quotes.getSale(), quotes.getDocument(), quotes.getDate());
     }
 
     @Override
