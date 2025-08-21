@@ -55,12 +55,12 @@ If you want to learn more about building native executables, please consult <htt
 
 ## Related Guides
 
-- RESTEasy Classic JSON-B ([guide](https://quarkus.io/guides/rest-json)): JSON-B serialization support for RESTEasy Classic
+- REST Jackson ([guide](https://quarkus.io/guides/rest#json-serialisation)): Jackson serialization support for Quarkus REST. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on it
 
 ## Provided Code
 
-### RESTEasy JAX-RS
+### REST
 
-Easily start your RESTful Web Services
+Easily start your REST Web Services
 
-[Related guide section...](https://quarkus.io/guides/getting-started#the-jax-rs-resources)
+[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
