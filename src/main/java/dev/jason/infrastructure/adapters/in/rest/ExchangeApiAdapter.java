@@ -21,7 +21,7 @@ public class ExchangeApiAdapter {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getExchangeRate(@PathParam("dni") String dni) {
         Log.info("Start endpoint getExchangeRate with param: " + dni);
-        var response = exchangeRateUseCase.getExchangeRateTodayByDni(dni);
+        var response = exchangeRateUseCase.getExchangeRateTodayByDocument(dni);
         return Response.ok(response).build();
     }
 }

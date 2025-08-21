@@ -7,14 +7,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
-@Builder
+@AllArgsConstructor
 @Entity
 @Table(name = "t_quotes")
 public class QuotesEntity {
@@ -23,9 +25,10 @@ public class QuotesEntity {
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    private String dni;
+    private String document;
     @Column(nullable = false)
     private LocalDate date;
     @Column(nullable = false)
     private Integer quotes;
 }
+

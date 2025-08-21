@@ -4,5 +4,5 @@ import dev.jason.infrastructure.adapters.in.rest.dto.ExchangeRateResponse;
 
 public interface ExchangeRateUseCase {
 
-    ExchangeRateResponse getExchangeRateTodayByDni(String dni);
+    ExchangeRateResponse getExchangeRateTodayByDocument(String document);
 }
