@@ -11,5 +11,6 @@ public class ExchangeRateResponse {
     private Integer code;
     private String response;
     private String message;
+    private ExchangeRateData data;
 
 }
