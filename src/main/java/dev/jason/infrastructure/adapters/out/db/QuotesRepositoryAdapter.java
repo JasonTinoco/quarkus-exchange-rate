@@ -31,4 +31,9 @@ public class QuotesRepositoryAdapter implements QuotesOutPort {
     public Quotes getQuotesPerDayByDocument(String document, LocalDate date) {
         return mapper.toDomain(repository.quotesPerDayByDyDocument(document, date));
     }
+
+    @Override
+    public Integer countQuotesPerDayByDocument(String document, LocalDate date) {
+        return repository.numberQuotesPerDayByDyDocument(document,date).intValue();
+    }
 }

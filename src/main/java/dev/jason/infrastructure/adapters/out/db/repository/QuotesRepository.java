@@ -25,4 +25,8 @@ public class QuotesRepository implements PanacheRepository<QuotesEntity> {
         return find("document = ?1 and date = ?2", document, date).firstResult();
     }
 
+    public Long numberQuotesPerDayByDyDocument(String document, LocalDate date) {
+        return count("document = ?1 and date = ?2", document, date);
+    }
+
 }

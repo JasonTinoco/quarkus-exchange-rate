@@ -11,4 +11,6 @@ public interface QuotesOutPort {
     void updateQuotes(Quotes quotes);
 
     Quotes getQuotesPerDayByDocument(String document, LocalDate date);
+
+    Integer countQuotesPerDayByDocument(String document, LocalDate date);
 }

@@ -28,4 +28,8 @@ public class ExchangeRateServiceDomain {
     public Boolean isExceededQuotesLimit(Integer quotes) {
         return quotes >= appProperties.maxQuotesPerDay();
     }
+
+    public Boolean requiresSaveAllQuotes() {
+        return appProperties.requiresSaveAllQuotes();
+    }
 }

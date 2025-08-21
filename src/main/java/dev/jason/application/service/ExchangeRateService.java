@@ -29,9 +29,14 @@ public class ExchangeRateService implements ExchangeRateUseCase {
     @Transactional
     public ExchangeRateResponse getExchangeRateTodayByDocument(String document) {
         LocalDate today = LocalDate.now();
+        Integer countQuotes;
 
-        Quotes quotesResp = quotesOutPort.getQuotesPerDayByDocument(document, today);
-        Integer countQuotes = serviceDomain.getQuotes(quotesResp);
+        if (serviceDomain.requiresSaveAllQuotes()) {
+            countQuotes = quotesOutPort.countQuotesPerDayByDocument(document, today);
+        } else {
+            Quotes quotesResp = quotesOutPort.getQuotesPerDayByDocument(document, today);
+            countQuotes = serviceDomain.getQuotes(quotesResp);
+        }
 
         if (serviceDomain.isExceededQuotesLimit(countQuotes)) {
             return this.buildResponseWarning(document);
@@ -41,10 +46,14 @@ public class ExchangeRateService implements ExchangeRateUseCase {
         Quotes quotesReq = this.buildQuote(document, countQuotes, today,
                 exchangeRate);
 
-        if (serviceDomain.isFirstQuotesOfDay(countQuotes)) {
+        if (serviceDomain.requiresSaveAllQuotes()) {
             quotesOutPort.saveQuotes(quotesReq);
         } else {
-            quotesOutPort.updateQuotes(quotesReq);
+            if (serviceDomain.isFirstQuotesOfDay(countQuotes)) {
+                quotesOutPort.saveQuotes(quotesReq);
+            } else {
+                quotesOutPort.updateQuotes(quotesReq);
+            }
         }
 
         return this.buildResponseSuccess(document, exchangeRate);
